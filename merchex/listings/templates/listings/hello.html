@@ -1,0 +1,14 @@
+{% extends 'listings/base.html' %}
+{% block title%}Merchex{% endblock %}
+
+{% block content %}
+    <h1>Hello Django !</h1>
+    <p>J'ai {{bands|length}} groupes préférés :</p>
+    <ul>
+        {% for band in bands %}
+        <li>{{ band.name }}</li>
+        {% endfor %}
+    <ul>
+{% endblock %}
+
+
