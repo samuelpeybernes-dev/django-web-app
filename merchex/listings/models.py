@@ -13,7 +13,8 @@ class Band(models.Model):
         HIP_HOP = 'HH'
         SYNTH_POP = 'SP'
         ALTERNATIVE_ROCK = 'AR'
-        HARD_ROCK = 'HR'
+        HARD_ROCK = 'HR',
+        CLASSIC = 'CL'
     genre = models.fields.CharField(choices=Genre.choices, max_length=5)
     active = models.fields.BooleanField(default=True)
     official_homepage = models.fields.URLField(null=True, blank=True)   
@@ -31,6 +32,7 @@ class Title(models.Model):
         POSTERS = 'PO'
         DIVERS = 'DI'
     types = models.fields.CharField(choices=Type.choices, max_length=5)
+    band = models.ForeignKey(Band, null=True, on_delete=models.SET_NULL)
     def __str__(self):
      return f'{self.title}'
 

@@ -9,7 +9,7 @@ class BandAdmin(admin.ModelAdmin):  # nous insérons ces deux lignes..
 admin.site.register(Band, BandAdmin)
 
 class TitleAdmin(admin.ModelAdmin):
- list_display = ('title', 'description', 'sold', 'year', 'types')
+ list_display = ('title', 'description', 'sold', 'year', 'types', 'band')
 
 admin.site.register(Title, TitleAdmin)
 
