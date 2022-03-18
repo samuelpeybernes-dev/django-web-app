@@ -2,12 +2,15 @@
 {% block title%}Merchex{% endblock %}
 
 {% block content %}
+
+<div class="box">
     <h1>Groupes</h1>
     <ul>
         {% for band in bands %}
-        <li>{{ band.name }}</li>
+        <li><a href="{% url 'band-detail' band.id %}">{{ band.name }}</a></li>
         {% endfor %}
     <ul>
+        <div>
 {% endblock %}
 
 

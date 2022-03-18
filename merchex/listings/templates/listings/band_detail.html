@@ -2,17 +2,26 @@
 {% block title%}Id{% endblock %}
 
 {% block content %}
-<h2>{{ band.name }}</h2>
 
-<ul>
-    <li>Genre : {{ band.get_genre_display }}</li>
-    <li>Année de formation : {{ band.year_formed }}</li>
-    <li>Actif : {{ band.active }}</li>
-    <li><a href="{{ band.official_homepage }}" target="_blank">{{ band.official_homepage }}</a></li>
-    {% for band in bands %}
-    <li><a href="/bands/{{ band.id }}/">{{ band.name }}</a></li>
-    {% endfor %}    
-</ul>
-<p>{{ band.biography }}</p>
+<div class="box">
 
+    <h2>{{ band.name }}</h2>
+
+    <ul>
+        <li>Genre : {{ band.get_genre_display }}</li>
+        <li>Année de formation : {{ band.year_formed }}</li>
+        <li>Actif : {{ band.active|yesno }}</li>
+        {% if band.official_homepage%}
+        <li><a href="{{ band.official_homepage }}" target="_blank">{{ band.official_homepage }}</a></li>
+        {% endif%}
+        {% for band in bands %}
+        <li><a href="/bands/{{ band.id }}/">{{ band.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <p>{{ band.biography }}</p>
+
+
+
+    <a href="{% url 'band-list' %}"><button type="button" class="btn btn-primary">Retour à tous les groupes</button></a>
+</div>
 {% endblock %}
