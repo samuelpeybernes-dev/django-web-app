@@ -9,11 +9,7 @@ def band_list(request):
     return render(request, 
             'listings/band_list.html',
             {'bands': bands})
-urlpatterns = [
-   ...
-   path('bands/', views.band_list),  # mise à jour du chemin et de la vue
-   ...
-]
+
 
 def about(request):
      return render(request, 
@@ -30,3 +26,8 @@ def listing(request):
             'listings/listing.html',
             {'titles': titles})
 
+def band_detail(request, id):  # notez le paramètre id supplémentaire
+   band = Band.objects.get(id=id)  # nous insérons cette ligne pour obtenir le Band avec cet id
+   return render(request,
+          'listings/band_detail.html',
+          {'band': band}) # nous mettons à jour cette ligne pour passer le groupe au gabarit
