@@ -14,10 +14,8 @@
         {% if band.official_homepage%}
         <li><a href="{{ band.official_homepage }}" target="_blank">{{ band.official_homepage }}</a></li>
         {% endif%}
-        {% for band in bands %}
-        <li><a href="/bands/{{ band.id }}/">{{ band.name }}</a></li>
-        {% endfor %}
     </ul>
+
     <p>{{ band.biography }}</p>
 
 

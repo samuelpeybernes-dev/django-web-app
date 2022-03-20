@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from unicodedata import name
 from django.contrib import admin
 from django.urls import path
 from listings import views
@@ -20,8 +21,9 @@ from listings import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bands/', views.band_list, name='band-list'),
-    path('bands/<int:id>/', views.band_detail, name='band-detail'), # ajouter ce motif sous notre autre motif de groupes
+    path('bands/<int:id>/', views.band_detail, name='band-detail'), 
     path('about-us/', views.about),
     path('contact-us/', views.contact),
-    path('listing/', views.listing)
+    path('listings/', views.listing_list, name='listing-list'),
+    path('listings/<int:id>/', views.listing_detail, name='listing-detail')
 ]

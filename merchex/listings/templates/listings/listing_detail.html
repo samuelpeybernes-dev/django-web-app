@@ -1,0 +1,20 @@
+{% extends 'listings/base.html' %}
+{% block title%}Listing{% endblock %}
+
+{% block content %}
+
+<div class="box">
+
+    <h2>{{ titles.title }}</h2>
+
+    <ul>
+        <li>Groupe : {{ titles.band }}</li>
+        <li>Type : {{ titles.get_types_display }}</li>
+        <li>Année : {{ titles.year }}</li>
+        <li>Stock : {{ titles.sold|yesno }}</li>
+    </ul>
+
+    <a href="{% url 'listing-list' %}"><button type="button" class="btn btn-primary">Retour au merch</button></a>
+</div>
+
+{% endblock %}

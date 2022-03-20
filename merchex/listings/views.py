@@ -10,6 +10,11 @@ def band_list(request):
             'listings/band_list.html',
             {'bands': bands})
 
+def band_detail(request, id):  # notez le paramètre id supplémentaire
+   band = Band.objects.get(id=id)  # nous insérons cette ligne pour obtenir le Band avec cet id
+   return render(request,
+          'listings/band_detail.html',
+          {'band': band}) # nous mettons à jour cette ligne pour passer le groupe au gabarit
 
 def about(request):
      return render(request, 
@@ -20,14 +25,14 @@ def contact(request):
             'listings/contact.html')
 
 
-def listing(request):
+def listing_list(request):
     titles = Title.objects.all()
     return render(request, 
-            'listings/listing.html',
+            'listings/listing_list.html',
             {'titles': titles})
 
-def band_detail(request, id):  # notez le paramètre id supplémentaire
-   band = Band.objects.get(id=id)  # nous insérons cette ligne pour obtenir le Band avec cet id
+def listing_detail(request, id):  # notez le paramètre id supplémentaire
+   titles = Title.objects.get(id=id)  # nous insérons cette ligne pour obtenir l'annonce avec cet id
    return render(request,
-          'listings/band_detail.html',
-          {'band': band}) # nous mettons à jour cette ligne pour passer le groupe au gabarit
+          'listings/listing_detail.html',
+          {'titles': titles}) # nous mettons à jour cette ligne pour passer le groupe au gabarit

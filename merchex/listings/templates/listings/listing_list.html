@@ -7,9 +7,10 @@
     <h1>Liste</h1>
     <ul>
         {% for title in titles %}
-        <li>{{ title.title }}</li>
+        <li><a href="{% url 'listing-detail' title.id %}">{{ title.title }}</a></li>
         {% endfor %}
     </ul>
+
 </div>
 
 {% endblock %}
