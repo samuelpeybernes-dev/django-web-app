@@ -8,6 +8,7 @@ from listings.models import Title
 from listings.forms import ListingForm, BandForm, ContactUsForm
 from django.core.mail import send_mail
 from django.shortcuts import redirect
+from django.contrib import messages
 
 def band_list(request):
     bands = Band.objects.all()
@@ -54,6 +55,23 @@ def band_update(request, id):
           'listings/band_update.html',
           {'form': form, 'band': band}) 
 
+def band_delete(request, id):  # notez le paramètre id supplémentaire
+    band = Band.objects.get(id=id)  # nécessaire pour GET et pour POST
+
+    if request.method == 'POST':
+        # supprimer le groupe de la base de données
+        band.delete()
+        # rediriger vers la liste des groupes
+        messages.success(request, 'Groupe suprimmé')
+        return redirect('band-list')
+        
+
+    # pas besoin de « else » ici. Si c'est une demande GET, continuez simplement
+
+    return render(request,
+                    'listings/band_delete.html',
+                    {'band': band})
+
 
 def about(request):
      return render(request, 
@@ -70,7 +88,8 @@ def contact(request):
                 from_email=form.cleaned_data['email'],
                 recipient_list=['admin@merchex.xyz'],
             )
-            return redirect('email-envoye')  # ajoutez cette instruction de retour
+            messages.success(request, 'Message envoyé')
+            return redirect('contact')  # ajoutez cette instruction de retour
 
             # si le formulaire n'est pas valide, nous laissons l'exécution continuer jusqu'au return
             # ci-dessous et afficher à nouveau le formulaire (avec des erreurs).
@@ -123,4 +142,22 @@ def listing_update(request, id):
     return render(request,
           'listings/listing_update.html',
           {'form': form, 'title': title}) 
+
+def listing_delete(request, id):  # notez le paramètre id supplémentaire
+    title = Title.objects.get(id=id)  # nécessaire pour GET et pour POST
+
+    if request.method == 'POST':
+        # supprimer le groupe de la base de données
+        title.delete()
+        # rediriger vers la liste des groupes
+        messages.success(request, 'Goodies suprimmé')
+        return redirect('listing-list')
+        
+
+    # pas besoin de « else » ici. Si c'est une demande GET, continuez simplement
+
+    return render(request,
+                    'listings/listing_delete.html',
+                    {'title': title})
+
 
